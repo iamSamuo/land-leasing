@@ -1,0 +1,167 @@
+.main__div {
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-div {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-div h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.search-div {
+  display: flex;
+  flex-flow: row nowrap;
+  width: auto;
+}
+
+.search-div input {
+  height: 1.7rem;
+  border: 0.5px solid black;
+  padding-left: 1em;
+  border-radius: 5px;
+  margin-left: 0.4em;
+}
+.search-div button {
+  height: 1.9rem;
+  border: none;
+  color: white;
+  background-color: blue;
+  margin-left: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.items-div {
+  padding-top: 2em;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.land__div {
+  height: 20em;
+  width: 22.5em;
+  background-color: black;
+}
+
+.image__div {
+  height: 60%;
+  width: 100%;
+  background-color: aliceblue;
+}
+
+.content__div {
+  height: 40%;
+  width: 100%;
+  color: white;
+  padding-left: 0.6em;
+  display: flex;
+  flex-direction: column;
+}
+
+.land__description {
+  margin-top: -1em;
+}
+
+.land__price {
+  margin-top: -0.6em;
+}
+
+@media (max-width: 520px) {
+  .main__div {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title-div {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title-div h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+
+  .search-div {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+  }
+
+  .search-div input {
+    height: 1.7rem;
+    border: 0.5px solid black;
+    border-radius: 5px;
+    margin-top: 0.4em;
+  }
+  .search-div button {
+    height: 1.9rem;
+    width: 10rem;
+    border: none;
+    color: white;
+    background-color: blue;
+    margin-top: 0.5em;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .items-div {
+    padding-top: 2em;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+  }
+
+  .land__div {
+    margin-top: 0.7em;
+    height: 18em;
+    width: 19em;
+    background-color: black;
+    border-radius: 5px;
+  }
+
+  .image__div {
+    height: 60%;
+    width: 100%;
+    background-color: aliceblue;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+
+  .content__div {
+    height: 40%;
+    width: 100%;
+    color: white;
+    padding-left: 0.6em;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .land__description {
+    margin-top: -1em;
+  }
+
+  .land__price {
+    margin-top: -0.6em;
+  }
+}

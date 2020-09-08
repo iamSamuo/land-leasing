@@ -1,0 +1,129 @@
+.main__div_products {
+  height: auto;
+}
+
+.title__div_products {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title__div_products h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.products__div {
+  height: auto;
+  width: 90%;
+  padding: 1.5em;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.product {
+  margin: 0.5em;
+  height: 22em;
+  width: 20em;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.product_image__div {
+  height: 60%;
+  width: 100%;
+}
+
+.product_content__div {
+  height: 40%;
+  width: 100%;
+  padding-left: 1em;
+}
+
+.product__name {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-top: -0.1em;
+}
+
+.product__description {
+  font-size: 1.1rem;
+  font-weight: 200;
+  margin-top: -0.4em;
+}
+
+.product__price {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: -0.4em;
+}
+
+.merchant__contact {
+  margin-top: -0.4em;
+  font-weight: 400;
+}
+
+@media (max-width: 520px) {
+  .title__div_products h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+
+  .products__div {
+    height: auto;
+    width: 90%;
+    padding: 1em;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product {
+    margin: 0.5em;
+    height: 18em;
+    width: 19em;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    border: 1px solid black;
+  }
+
+  .product_image__div {
+    height: 60%;
+    width: 100%;
+  }
+
+  .product_content__div {
+    height: 40%;
+    width: 100%;
+    padding-left: 1em;
+  }
+
+  .product__name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: -0.1em;
+  }
+
+  .product__description {
+    font-size: 0.9rem;
+    font-weight: 200;
+    margin-top: -0.4em;
+  }
+
+  .product__price {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: -0.4em;
+  }
+
+  .merchant__contact {
+    margin-top: -0.4em;
+    font-weight: 400;
+  }
+}
