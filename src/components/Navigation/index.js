@@ -68,6 +68,14 @@ function NavigationAuth() {
               Products
             </Link>
           </Typography>
+          <Typography className={classes.links}>
+            <Link
+              to={ROUTES.DASHBOARD}
+              style={{ textDecoration: "none", color: "blue" }}
+            >
+              Dashboard
+            </Link>
+          </Typography>
 
           <Button color="inherit">
             <DrawerComponentAuth />
@@ -111,7 +119,7 @@ function NavigationNonAuth() {
           </Typography>
           <Typography className={classes.links}>
             <Link
-              to={ROUTES.LANDING}
+              to={ROUTES.HOME}
               style={{ textDecoration: "none", color: "blue" }}
             >
               Products
@@ -119,7 +127,7 @@ function NavigationNonAuth() {
           </Typography>
           <Typography className={classes.links}>
             <Link
-              to={ROUTES.LANDING}
+              to={ROUTES.SIGN_IN}
               style={{ textDecoration: "none", color: "blue" }}
             >
               Sign In

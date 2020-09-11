@@ -1,0 +1,92 @@
+.dashboard-main__div {
+  height: auto;
+  padding: 2em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.profile__div {
+  width: 25%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5em;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+.dashboard-avatar__div {
+  height: 8em;
+  width: 8em;
+  border: none;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.dashboard-list__div {
+  height: auto;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-list__div p {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.dashboard-list__div button {
+  height: 2rem;
+  width: 100%;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.upload__div {
+  height: auto;
+  width: 70%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-title__div h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.upload-description__div {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-description__div textarea {
+  width: 80%;
+  border: 1px solid black;
+  height: 4em;
+  padding-left: 0.5em;
+  font-weight: 500;
+}
+
+.other-details__div {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.other-details__div input {
+  width: 80%;
+  margin-top: 1em;
+  height: 2em;
+  padding-left: 0.5em;
+  font-weight: 500;
+}

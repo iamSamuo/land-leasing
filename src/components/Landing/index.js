@@ -1,5 +1,7 @@
 import React from "react";
 import "./Landing.css";
+import { Link } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
 function Landing() {
   return (
@@ -14,14 +16,16 @@ function Landing() {
         <button>Search</button>
       </div>
       <div className="items-div">
-        <div className="land__div">
-          <div className="image__div">Image</div>
-          <div className="content__div">
-            <h4 className="land__name">Land Name</h4>
-            <p className="land__description">Land Description</p>
-            <h5 className="land__price">Land Prices</h5>
+        <Link to={ROUTES.LANDDETAILS} style={{ textDecoration: "none" }}>
+          <div className="land__div">
+            <div className="image__div">Image</div>
+            <div className="content__div">
+              <h4 className="land__name">Land Name</h4>
+              <p className="land__description">Land Description</p>
+              <h5 className="land__price">Land Prices</h5>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
