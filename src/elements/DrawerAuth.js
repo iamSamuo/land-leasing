@@ -61,6 +61,11 @@ export default function DrawerComponentAuth() {
             Products
           </Link>
         </ListItem>
+        <ListItem button>
+          <Link to={ROUTES.DASHBOARD} className={classes.link}>
+            Dashboard
+          </Link>
+        </ListItem>
 
         {/* {condition ? <ListItem button >
             <Link to={ROUTES.ADMIN} className={classes.link}>Admin</Link>  

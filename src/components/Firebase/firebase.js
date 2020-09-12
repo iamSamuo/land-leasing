@@ -22,6 +22,7 @@ class Firebase {
     // instantiating the auth package
     this.auth = app.auth();
     this.db = app.database();
+    this.store = app.storage();
   }
 
   // AUTH API
@@ -47,5 +48,7 @@ class Firebase {
   user = (uid) => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref("users");
+
+  addLandImage = () => this.store.ref("items/land/images");
 }
 export default Firebase;
