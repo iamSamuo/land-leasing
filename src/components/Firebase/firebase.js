@@ -49,6 +49,9 @@ class Firebase {
 
   users = () => this.db.ref("users");
 
+  // all land
+  land = () => this.db.ref("items/land");
+
   addLandImage = () => this.store.ref("items/land/images");
 }
 export default Firebase;
