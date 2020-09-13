@@ -10,6 +10,7 @@ const INITIAL_USER_REG = {
   lastName: "",
   email: "",
   password: "",
+  role: "",
   error: null,
 };
 
@@ -54,6 +55,7 @@ class MainProvider extends Component {
       firstName: this.state.userSignUpInfo.firstName,
       lastName: this.state.userSignUpInfo.lastName,
       email: this.state.userSignUpInfo.email,
+      role: this.state.userSignUpInfo.role,
       dateRegisered: new Date(),
     };
 

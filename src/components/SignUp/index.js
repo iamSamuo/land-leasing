@@ -1,48 +1,40 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import MainProvider from '../../state-management/providers/MainProvider';
-import { MainContext } from '../../state-management/Context';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import MainProvider from "../../state-management/providers/MainProvider";
+import { MainContext } from "../../state-management/Context";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
 
-
-
-function Copyright() {
-    return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        
-         Tusome
-       {' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 380,
   },
 }));
 
@@ -52,16 +44,21 @@ export default function SignUp() {
   return (
     <MainProvider>
       <MainContext.Consumer>
-        {context => (
-            <Container component="main" maxWidth="xs">
+        {(context) => (
+          <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-              
               <Typography component="h1" variant="h5">
                 Sign up
               </Typography>
-              {context.state.signUpError != null ? <h5 style={{color: 'red'}}>{context.state.signUpError.message}</h5> : <h6>{}</h6>}
-              <form className={classes.form} noValidate >
+              {context.state.signUpError != null ? (
+                <h5 style={{ color: "red" }}>
+                  {context.state.signUpError.message}
+                </h5>
+              ) : (
+                <h6>{}</h6>
+              )}
+              <form className={classes.form} noValidate>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -118,7 +115,29 @@ export default function SignUp() {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    
+                    <FormControl
+                      variant="outlined"
+                      className={classes.formControl}
+                    >
+                      <InputLabel id="demo-simple-select-outlined-label">
+                        Select your role
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-outlined-label"
+                        id="demo-simple-select-outlined"
+                        value={context.state.userSignUpInfo.role}
+                        onChange={context.handleSignUpInput}
+                        name="role"
+                        label="Select your role"
+                      >
+                        {/* <MenuItem value="">
+                          <em>None</em>
+                        </MenuItem> */}
+                        <MenuItem value={"FarmOwner"}>Farm Owner</MenuItem>
+                        <MenuItem value={"vendor"}>Vendor</MenuItem>
+                        <MenuItem value={"user"}>Normal User</MenuItem>
+                      </Select>
+                    </FormControl>
                   </Grid>
                 </Grid>
                 <Button
@@ -141,13 +160,9 @@ export default function SignUp() {
                 </Grid>
               </form>
             </div>
-            <Box mt={5}>
-              <Copyright />
-            </Box>
           </Container>
         )}
       </MainContext.Consumer>
     </MainProvider>
-    
   );
 }
