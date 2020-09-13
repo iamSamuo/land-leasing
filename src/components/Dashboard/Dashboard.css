@@ -91,6 +91,20 @@
   font-weight: 500;
 }
 
+.file-uploader {
+  margin-top: 1em;
+}
+
+.upload-btn {
+  width: 8em;
+  height: 2em;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1em;
+}
+
 /* media queries  */
 @media (max-width: 520px) {
   .dashboard-main__div {
