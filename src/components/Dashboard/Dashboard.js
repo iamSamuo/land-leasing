@@ -20,6 +20,7 @@ class Dashboard extends Component {
     productDescription: "",
     productImageUrl: "",
     productProgress: 0,
+    merchantContact: "",
     isUploadingProduct: false,
   };
 
@@ -99,7 +100,7 @@ class Dashboard extends Component {
       isUploadingProduct: false,
     });
     this.props.firebase
-      .addLandImage()
+      .addProductImage()
       .child(filename)
       .getDownloadURL()
       .then((url) => this.setState({ productImageUrl: url }));
@@ -112,6 +113,7 @@ class Dashboard extends Component {
       productPrice,
       productDescription,
       productImageUrl,
+      merchantContact,
     } = this.state;
 
     firebase
@@ -124,6 +126,7 @@ class Dashboard extends Component {
         price: productPrice,
         description: productDescription,
         image: productImageUrl,
+        contact: merchantContact,
       });
   };
   render() {
@@ -244,6 +247,15 @@ class Dashboard extends Component {
               type="text"
               value={this.state.productPrice}
               name="productPrice"
+              onChange={this.handleChange}
+            ></input>
+          </div>
+          <div className="other-details__div">
+            <input
+              placeholder="your phone number"
+              type="number"
+              value={this.state.merchantContact}
+              name="merchantContact"
               onChange={this.handleChange}
             ></input>
           </div>

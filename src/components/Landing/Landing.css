@@ -43,7 +43,7 @@
 .items-div {
   padding-top: 2em;
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
   width: 90%;

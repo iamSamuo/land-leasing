@@ -18,9 +18,9 @@
   width: 90%;
   padding: 1.5em;
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .product {
@@ -30,12 +30,18 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  border: 1px solid black;
 }
 
 .product_image__div {
   height: 60%;
   width: 100%;
+  background-color: aliceblue;
+}
+
+.product__image_ {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .product_content__div {
