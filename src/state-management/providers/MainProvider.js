@@ -65,6 +65,8 @@ class MainProvider extends Component {
         this.state.userSignUpInfo.password
       )
       .then((authUser) => {
+        // storing the user id in local storage
+        localStorage.setItem("uid", authUser.user.uid);
         // create user in firestore
         return this.props.firebase.user(authUser.user.uid).set(userData);
       })

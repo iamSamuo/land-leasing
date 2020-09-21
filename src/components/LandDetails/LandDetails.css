@@ -7,7 +7,7 @@
   height: auto;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding-left: 5em;
   padding-right: 5em;
@@ -23,9 +23,14 @@
 .details__image__div {
   height: 20em;
   width: 32em;
-  background-color: black;
   border: none;
   border-radius: 5px;
+}
+
+.details__image__ {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .details__price__div {
@@ -49,6 +54,7 @@
 .land-description__div {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-start;
   margin-left: 1.5em;
 }
 

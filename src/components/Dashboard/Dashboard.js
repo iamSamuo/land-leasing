@@ -7,6 +7,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 class Dashboard extends Component {
   state = {
+    pageLoading: false,
     landName: "",
     landPrice: "",
     landDescription: "",
@@ -22,7 +23,25 @@ class Dashboard extends Component {
     productProgress: 0,
     merchantContact: "",
     isUploadingProduct: false,
+    userDetails: {},
+    userRole: "",
   };
+
+  componentDidMount() {
+    this.setState({ pageLoading: true });
+    const uid = localStorage.getItem("uid");
+    this.props.firebase.user(uid).on("value", (snapshot) => {
+      var user = snapshot.val();
+      if (user) {
+        this.setState({
+          userDetails: user,
+          userRole: user.role,
+        });
+      } else {
+        console.log("No such document");
+      }
+    });
+  }
 
   handleChange = (event) => {
     let name = event.target.name;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Landing.css";
 import { Link } from "react-router-dom";
 import { withFirebase } from "../Firebase";
-import * as ROUTES from "../../constants/routes";
+// import * as ROUTES from "../../constants/routes";
 
 class Landing extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class Landing extends Component {
         <div className="items-div">
           {this.state.allLand.map((land) => (
             <Link
-              to={ROUTES.LANDDETAILS}
+              to={`land-details/${land.id}`}
               style={{ textDecoration: "none", color: "black" }}
               key={land.id}
             >
