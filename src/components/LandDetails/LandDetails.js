@@ -49,9 +49,20 @@ class LandDetails extends Component {
           </div>
         </div>
         <div className="land-documents__div">
-          <div className="title-deed-image__div"></div>
-          <div className="title-deed-image__div"></div>
-          <div className="title-deed-image__div"></div>
+          <div className="title-deed-image__div">
+            <img
+              className="details__image__"
+              alt={this.state.landDetails.name}
+              src={this.state.landDetails.deedImage}
+            ></img>
+          </div>
+          <div className="title-deed-image__div">
+            <img
+              className="details__image__"
+              alt={this.state.landDetails.name}
+              src={this.state.landDetails.deedImage}
+            ></img>
+          </div>
         </div>
         <div className="land-map__div">
           <div className="map"></div>

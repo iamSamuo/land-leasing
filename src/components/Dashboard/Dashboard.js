@@ -4,6 +4,7 @@ import { withFirebase } from "../Firebase";
 import firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import renderIf from "render-if";
 
 class Dashboard extends Component {
   state = {
@@ -25,6 +26,8 @@ class Dashboard extends Component {
     isUploadingProduct: false,
     userDetails: {},
     userRole: "",
+    isUploading: false,
+    deedProgress: 0,
   };
 
   componentDidMount() {
@@ -73,6 +76,31 @@ class Dashboard extends Component {
       .then((url) => this.setState({ landImageUrl: url }));
   };
 
+  // checks the upload progress.
+  handleUploadTitleDeedStart = () =>
+    this.setState({ isUploadingDeed: true, deedProgress: 0 });
+  handleTitleDeedProgress = (deedProgress) => this.setState({ deedProgress });
+
+  // checks for errors while uploading
+  handleUploadTitleDeedError = (error) => {
+    this.setState({ isUploadingDeed: false });
+    console.error(error);
+  };
+
+  // uploads the image to firebase storage.
+  handleUploadTitleDeedSuccess = (filename) => {
+    this.setState({
+      deedImageUrl: filename,
+      deedProgress: 100,
+      isUploadingDeed: false,
+    });
+    this.props.firebase
+      .addLandImage()
+      .child(filename)
+      .getDownloadURL()
+      .then((url) => this.setState({ deedImageUrl: url }));
+  };
+
   handleLandUpload = (event) => {
     event.preventDefault();
     const {
@@ -82,6 +110,7 @@ class Dashboard extends Component {
       landLocation,
       suitableCrop,
       landImageUrl,
+      deedImageUrl,
     } = this.state;
 
     firebase
@@ -94,6 +123,7 @@ class Dashboard extends Component {
         location: landLocation,
         suitableCrop: suitableCrop,
         image: landImageUrl,
+        deedImage: deedImageUrl,
       });
   };
 
@@ -153,6 +183,9 @@ class Dashboard extends Component {
       <div className="dashboard-main__div">
         <div className="profile__div">
           <div className="dashboard-avatar__div"></div>
+          <p>
+            {this.state.userDetails.firstName} {this.state.userDetails.lastName}
+          </p>
           <div className="dashboard-list__div">
             <p>View products</p>
             <p>Orders</p>
@@ -160,152 +193,172 @@ class Dashboard extends Component {
             <button>Logout</button>
           </div>
         </div>
-        <div className="upload__div">
-          <div className="upload-title__div">
-            <h2>Add Land to Listings</h2>
-          </div>
-          <div className="upload-description__div">
-            <textarea
-              placeholder="Brief Description of land"
-              type="text"
-              value={this.state.landDescription}
-              name="landDescription"
-              onChange={this.handleChange}
-            ></textarea>
-          </div>
-          <div className="other-details__div">
-            <input
-              placeholder="Name of land?"
-              type="text"
-              value={this.state.landName}
-              name="landName"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <div className="other-details__div">
-            <input
-              placeholder="Which crop is most suitable?"
-              type="text"
-              value={this.state.suitableCrop}
-              name="suitableCrop"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <div className="other-details__div">
-            <input
-              placeholder="Where is the land located?"
-              type="text"
-              value={this.state.landLocation}
-              name="landLocation"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <div className="other-details__div">
-            <input
-              placeholder="price of land per acre in Ksh."
-              type="text"
-              value={this.state.landPrice}
-              name="landPrice"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-
-          <FileUploader
-            className="file-uploader"
-            accept="image/*"
-            name="landImageUrl"
-            randomizeFilename
-            storageRef={this.props.firebase.addLandImage()}
-            onUploadStart={this.handleUploadLandStart}
-            onUploadError={this.handleUploadLandError}
-            onUploadSuccess={this.handleUploadLandSuccess}
-            onProgress={this.handleLandProgress}
-          />
-          {this.state.isUploadingLand && (
-            <p className="progress">
-              Progress:{" "}
-              <LinearProgress
-                className=""
-                valueBuffer={this.state.landProgress}
+        {renderIf(this.state.userRole === "FarmOwner")(
+          <div className="upload__div">
+            <div className="upload-title__div">
+              <h2>Add Land to Listings</h2>
+            </div>
+            <div className="upload-description__div">
+              <textarea
+                placeholder="Brief Description of land"
+                type="text"
+                value={this.state.landDescription}
+                name="landDescription"
+                onChange={this.handleChange}
+              ></textarea>
+            </div>
+            <div className="other-details__div">
+              <input
+                placeholder="Name of land?"
+                type="text"
+                value={this.state.landName}
+                name="landName"
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div className="other-details__div">
+              <input
+                placeholder="Which crop is most suitable?"
+                type="text"
+                value={this.state.suitableCrop}
+                name="suitableCrop"
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div className="other-details__div">
+              <input
+                placeholder="Where is the land located?"
+                type="text"
+                value={this.state.landLocation}
+                name="landLocation"
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div className="other-details__div">
+              <input
+                placeholder="price of land per acre in Ksh."
+                type="text"
+                value={this.state.landPrice}
+                name="landPrice"
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div className="file__upload__div">
+              <p>Upload land image</p>
+              <FileUploader
+                className="file-uploader"
+                accept="image/*"
+                name="landImageUrl"
+                randomizeFilename
+                storageRef={this.props.firebase.addLandImage()}
+                onUploadStart={this.handleUploadLandStart}
+                onUploadError={this.handleUploadLandError}
+                onUploadSuccess={this.handleUploadLandSuccess}
+                onProgress={this.handleLandProgress}
               />
-            </p>
-          )}
-          <button
-            type="submit"
-            onClick={this.handleLandUpload}
-            className="upload-btn"
-          >
-            Upload
-          </button>
-        </div>
-        <div className="upload__div">
-          <div className="upload-title__div">
-            <h2>Add Product to Listings</h2>
-          </div>
-          <div className="upload-description__div">
-            <textarea
-              placeholder="Brief Description of product"
-              type="text"
-              value={this.state.productDescription}
-              name="productDescription"
-              onChange={this.handleChange}
-            ></textarea>
-          </div>
-          <div className="other-details__div">
-            <input
-              placeholder="Name of product?"
-              type="text"
-              value={this.state.productName}
-              name="productName"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <div className="other-details__div">
-            <input
-              placeholder="price of product in Ksh."
-              type="text"
-              value={this.state.productPrice}
-              name="productPrice"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <div className="other-details__div">
-            <input
-              placeholder="your phone number"
-              type="number"
-              value={this.state.merchantContact}
-              name="merchantContact"
-              onChange={this.handleChange}
-            ></input>
-          </div>
-          <FileUploader
-            className="file-uploader"
-            accept="image/*"
-            name="productImageUrl"
-            randomizeFilename
-            storageRef={this.props.firebase.addProductImage()}
-            onUploadStart={this.handleUploadProductStart}
-            onUploadError={this.handleUploadProductError}
-            onUploadSuccess={this.handleUploadProductSuccess}
-            onProgress={this.handleProductProgress}
-          />
-          {this.state.isUploadingProduct && (
-            <p className="progress">
-              Progress:{" "}
-              <LinearProgress
-                className=""
-                valueBuffer={this.state.productProgress}
+            </div>
+            <div className="file__upload__div">
+              <p>Upload title deed image</p>
+              <FileUploader
+                className="file-uploader"
+                accept="image/*"
+                name="titleDeedImageUrl"
+                randomizeFilename
+                storageRef={this.props.firebase.addLandImage()}
+                onUploadStart={this.handleUploadLandStart}
+                onUploadError={this.handleUploadTitleDeedError}
+                onUploadSuccess={this.handleUploadTitleDeedSuccess}
+                onProgress={this.handleLandProgress}
               />
-            </p>
-          )}
-          <button
-            type="submit"
-            onClick={this.handleProductUpload}
-            className="upload-btn"
-          >
-            Upload
-          </button>
-        </div>
+            </div>
+            {this.state.isUploadingLand && (
+              <p className="progress">
+                Progress:{" "}
+                <LinearProgress
+                  className=""
+                  valueBuffer={this.state.landProgress}
+                />
+              </p>
+            )}
+            <button
+              type="submit"
+              onClick={this.handleLandUpload}
+              className="upload-btn"
+            >
+              Upload
+            </button>
+          </div>
+        )}
+        {renderIf(this.state.userRole === "vendor")(
+          <div className="upload__div">
+            <div className="upload-title__div">
+              <h2>Add Product to Listings</h2>
+            </div>
+            <div className="upload-description__div">
+              <textarea
+                placeholder="Brief Description of product"
+                type="text"
+                value={this.state.productDescription}
+                name="productDescription"
+                onChange={this.handleChange}
+              ></textarea>
+            </div>
+            <div className="other-details__div">
+              <input
+                placeholder="Name of product?"
+                type="text"
+                value={this.state.productName}
+                name="productName"
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div className="other-details__div">
+              <input
+                placeholder="price of product in Ksh."
+                type="text"
+                value={this.state.productPrice}
+                name="productPrice"
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div className="other-details__div">
+              <input
+                placeholder="your phone number"
+                type="number"
+                value={this.state.merchantContact}
+                name="merchantContact"
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <FileUploader
+              className="file-uploader"
+              accept="image/*"
+              name="productImageUrl"
+              randomizeFilename
+              storageRef={this.props.firebase.addProductImage()}
+              onUploadStart={this.handleUploadProductStart}
+              onUploadError={this.handleUploadProductError}
+              onUploadSuccess={this.handleUploadProductSuccess}
+              onProgress={this.handleProductProgress}
+            />
+            {this.state.isUploadingProduct && (
+              <p className="progress">
+                Progress:{" "}
+                <LinearProgress
+                  className=""
+                  valueBuffer={this.state.productProgress}
+                />
+              </p>
+            )}
+            <button
+              type="submit"
+              onClick={this.handleProductUpload}
+              className="upload-btn"
+            >
+              Upload
+            </button>
+          </div>
+        )}
       </div>
     );
   }
