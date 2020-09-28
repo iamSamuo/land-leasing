@@ -90,7 +90,6 @@
 .map {
   height: 100%;
   width: 85%;
-  background-color: black;
   border: none;
   border-radius: 5px;
 }
@@ -119,4 +118,115 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media (max-width: 520px) {
+  .div__main {
+    height: auto;
+    padding: 2em;
+  }
+
+  .top__div {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .image-price__div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .details__image__div {
+    height: 20em;
+    width: 85%;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .details__image__ {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .details__price__div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .details__name {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  .details__price {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-top: -0.7em;
+  }
+
+  .land-description__div {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .land__description {
+    font-size: 1.2em;
+    font-weight: 200;
+  }
+
+  .land-documents__div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 1em;
+  }
+
+  .title-deed-image__div {
+    height: 10em;
+    width: 10em;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .land-map__div {
+    display: none;
+  }
+
+  .options__div {
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .chat__div {
+    margin-top: 1em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .chat__div button {
+    height: 2rem;
+    width: 30%;
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 }

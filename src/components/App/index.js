@@ -8,7 +8,6 @@ import SignIn from "../SignIn";
 import Landing from "../Landing";
 import Home from "../Home";
 import SignUp from "../SignUp";
-import AdminPage from "../Admin";
 import Footer from "../Footer/index";
 import LandDetails from "../LandDetails/LandDetails";
 import Dashboard from "../Dashboard/Dashboard";
@@ -22,7 +21,6 @@ const App = () => (
     <Route path={ROUTES.HOME} component={Home} />
     <Route path={ROUTES.SIGN_IN} component={SignIn} />
     <Route path={ROUTES.SIGN_UP} component={SignUp} />
-    <Route path={ROUTES.ADMIN} component={AdminPage} />
     <Route path={ROUTES.LANDDETAILS} component={LandDetails} />
     <Route path={ROUTES.DASHBOARD} component={Dashboard} />
     <Footer />

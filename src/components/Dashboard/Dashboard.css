@@ -105,6 +105,13 @@
   margin-top: 1em;
 }
 
+.file__upload__div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* media queries  */
 @media (max-width: 520px) {
   .dashboard-main__div {
@@ -197,11 +204,10 @@
     padding-left: 0.5em;
     font-weight: 500;
   }
-}
-
-.file__upload__div {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  .file__upload__div {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

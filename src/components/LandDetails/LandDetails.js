@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withFirebase } from "../Firebase";
 import "./LandDetails.css";
+import Map from "../Map";
 
 class LandDetails extends Component {
   state = {
@@ -65,7 +66,9 @@ class LandDetails extends Component {
           </div>
         </div>
         <div className="land-map__div">
-          <div className="map"></div>
+          <div className="map">
+            <Map style={{ height: "100%", width: "100%" }} />
+          </div>
         </div>
         <div className="options__div">
           <div className="chat__div">
