@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 import DrawerComponentAuth from "../../elements/DrawerAuth";
 import DrawerComponentNonAuth from "../../elements/DrawerNonAuth";
 import { AuthUserContext } from "../Session";
-
 import * as ROUTES from "../../constants/routes";
+import LogoImage from "../../resources/images/logo.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +20,15 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+  },
+  imageDiv: {
+    height: "4em",
+    width: "8em",
+  },
+  image: {
+    height: "100%",
+    width: "100%",
+    objectFit: "cover",
   },
   links: {
     marginRight: "1em",
@@ -47,15 +56,25 @@ function NavigationAuth() {
           <Typography variant="h6" className={classes.title}>
             <Link
               to={ROUTES.LANDING}
-              style={{ textDecoration: "none", color: "blue" }}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "700",
+              }}
             >
-              Agricultural Land Lease
+              <div className={classes.imageDiv}>
+                <img src={LogoImage} alt="Logo" className={classes.image}></img>
+              </div>
             </Link>
           </Typography>
           <Typography className={classes.links}>
             <Link
               to={ROUTES.LANDING}
-              style={{ textDecoration: "none", color: "blue" }}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "600",
+              }}
             >
               Lease Land
             </Link>
@@ -63,7 +82,11 @@ function NavigationAuth() {
           <Typography className={classes.links}>
             <Link
               to={ROUTES.HOME}
-              style={{ textDecoration: "none", color: "blue" }}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "600",
+              }}
             >
               Products
             </Link>
@@ -71,7 +94,11 @@ function NavigationAuth() {
           <Typography className={classes.links}>
             <Link
               to={ROUTES.DASHBOARD}
-              style={{ textDecoration: "none", color: "blue" }}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "600",
+              }}
             >
               Dashboard
             </Link>
@@ -96,15 +123,25 @@ function NavigationNonAuth() {
           <Typography variant="h6" className={classes.title}>
             <Link
               to={ROUTES.LANDING}
-              style={{ textDecoration: "none", color: "blue" }}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "700",
+              }}
             >
-              Agricultural Land Lease
+              <div className={classes.imageDiv}>
+                <img src={LogoImage} alt="Logo" className={classes.image}></img>
+              </div>
             </Link>
           </Typography>
           <Typography className={classes.links}>
             <Link
               to={ROUTES.LANDING}
-              style={{ textDecoration: "none", color: "blue" }}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "600",
+              }}
             >
               Home
             </Link>
@@ -112,7 +149,11 @@ function NavigationNonAuth() {
           <Typography className={classes.links}>
             <Link
               to={ROUTES.LANDING}
-              style={{ textDecoration: "none", color: "blue" }}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "600",
+              }}
             >
               Lease Land
             </Link>
@@ -120,7 +161,11 @@ function NavigationNonAuth() {
           <Typography className={classes.links}>
             <Link
               to={ROUTES.HOME}
-              style={{ textDecoration: "none", color: "blue" }}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "600",
+              }}
             >
               Products
             </Link>
@@ -128,7 +173,11 @@ function NavigationNonAuth() {
           <Typography className={classes.links}>
             <Link
               to={ROUTES.SIGN_IN}
-              style={{ textDecoration: "none", color: "blue" }}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "600",
+              }}
             >
               Sign In
             </Link>
