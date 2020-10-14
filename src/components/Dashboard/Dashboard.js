@@ -7,7 +7,6 @@ import FileUploader from "react-firebase-file-uploader";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import renderIf from "render-if";
 import SignOut from "../../components/SignOut";
-import MockImage from "../../resources/images/home_farmland.png";
 
 const MainDiv = styled.div`
   padding: 1em;
