@@ -12,6 +12,7 @@ import Footer from "../Footer/index";
 import LandDetails from "../LandDetails/LandDetails";
 import Dashboard from "../Dashboard/Dashboard";
 import Blog from "../Blog/Blog";
+import Payments from "../Payments/Payments";
 
 const App = () => (
   <Router>
@@ -25,6 +26,7 @@ const App = () => (
     <Route path={ROUTES.LANDDETAILS} component={LandDetails} />
     <Route path={ROUTES.DASHBOARD} component={Dashboard} />
     <Route path={ROUTES.BLOG} component={Blog} />
+    <Route path={ROUTES.PAYMENTS} component={Payments} />
     <Footer />
   </Router>
 );

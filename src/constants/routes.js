@@ -10,3 +10,4 @@ export const LANDDETAILS = "/land-details/:id";
 // export const DASHBOARD = "/dashboard/:id";
 export const DASHBOARD = `/dashboard/${userId}`;
 export const BLOG = "/agricultural-blog";
+export const PAYMENTS = "/payments";
