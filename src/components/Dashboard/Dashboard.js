@@ -95,7 +95,7 @@ const Label = styled.p`
 `;
 
 const Input = styled.input`
-  height: 2.2em;
+  height: 2.3em;
   width: 70%;
   border: none;
   border-radius: 8px;

@@ -19,7 +19,7 @@ const TopDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
+  background-color: #e5e5e5;
 `;
 
 const InnerDiv = styled.div`
@@ -41,7 +41,7 @@ const SearchInput = styled.input`
   width: 80%;
   border: none;
   border-radius: 8px;
-  background-color: #e5e5e5;
+  background-color: white;
   padding-left: 1em;
 `;
 

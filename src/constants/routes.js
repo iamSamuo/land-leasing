@@ -9,3 +9,4 @@ export const PASSWORD_FORGET = "/pw-forget";
 export const LANDDETAILS = "/land-details/:id";
 // export const DASHBOARD = "/dashboard/:id";
 export const DASHBOARD = `/dashboard/${userId}`;
+export const BLOG = "/agricultural-blog";
