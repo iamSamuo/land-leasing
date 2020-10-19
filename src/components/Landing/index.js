@@ -157,6 +157,9 @@ class Landing extends Component {
       allLand: [],
       productsLoading: false,
       allProducts: [],
+      crop: "",
+      location: "",
+      price: "",
     };
   }
 
@@ -197,46 +200,36 @@ class Landing extends Component {
     this.props.firebase.land().off();
     this.props.firebase.products().off();
   }
-  //   render() {
-  //     return (
-  //       <div className="main__div">
-  //         <div className="title-div">
-  //           <h2>Search For Land</h2>
-  //         </div>
-  //         <div className="search-div">
-  //           <input placeholder="Grow"></input>
-  //           <input placeholder="Location"></input>
-  //           <input placeholder="Price"></input>
-  //           <button>Search</button>
-  //         </div>
-  //         <div className="items-div">
-  //           {this.state.allLand.map((land) => (
-  //             <Link
-  //               to={`land-details/${land.id}`}
-  //               style={{ textDecoration: "none", color: "black" }}
-  //               key={land.id}
-  //             >
-  //               <div className="land__div">
-  //                 <div className="image__div">
-  //                   <img
-  //                     className="land__image"
-  //                     src={land.image}
-  //                     alt={land.name}
-  //                   ></img>
-  //                 </div>
-  //                 <div className="content__div">
-  //                   <h4 className="land__name_">{land.name}</h4>
-  //                   <p className="land__description_">{land.description}</p>
-  //                   <h5 className="land__price">Ksh.{land.price} per acre</h5>
-  //                 </div>
-  //               </div>
-  //             </Link>
-  //           ))}
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-  // }
+
+  handleChange = (event) => {
+    let name = event.target.name;
+    this.setState({ [name]: event.target.value });
+  };
+
+  handleSearch = (e) => {
+    e.preventDefault();
+    var landLocation = this.state.location;
+    this.setState({ landLoading: true });
+    this.props.firebase
+      .searchLand()
+      .orderByChild("location")
+      .equalTo(landLocation)
+      .on("value", function (snapshot) {
+        if (snapshot.val() === null) {
+          console.log("not present");
+        } else {
+          const landObject = snapshot.val();
+          const landList = Object.keys(landObject).map((key) => ({
+            ...landObject[key],
+            id: key,
+          }));
+          this.setState({
+            allLand: landList,
+            landLoading: false,
+          });
+        }
+      });
+  };
 
   render() {
     return (
@@ -245,11 +238,29 @@ class Landing extends Component {
           <SearchDiv>
             <SearchTitle>Search for Land</SearchTitle>
             <SearchInputs>
-              <Input type="text" placeholder="crop"></Input>
-              <Input type="text" placeholder="location"></Input>
-              <Input type="text" placeholder="price"></Input>
+              <Input
+                type="text"
+                placeholder="crop"
+                value={this.state.crop}
+                name="crop"
+                onChange={this.handleChange}
+              ></Input>
+              <Input
+                type="text"
+                placeholder="location"
+                value={this.state.location}
+                name="location"
+                onChange={this.handleChange}
+              ></Input>
+              <Input
+                type="text"
+                placeholder="price"
+                value={this.state.price}
+                name="price"
+                onChange={this.handleChange}
+              ></Input>
             </SearchInputs>
-            <SearchButton>Find Land</SearchButton>
+            <SearchButton onClick={this.handleSearch}>Find Land</SearchButton>
           </SearchDiv>
         </TopDiv>
         <ItemsContainer>

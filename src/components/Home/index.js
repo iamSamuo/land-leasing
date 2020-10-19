@@ -36,14 +36,14 @@ const Title = styled.h2`
   padding-left: 2em;
 `;
 
-const SearchInput = styled.input`
-  height: 2.3em;
-  width: 80%;
-  border: none;
-  border-radius: 8px;
-  background-color: white;
-  padding-left: 1em;
-`;
+// const SearchInput = styled.input`
+//   height: 2.3em;
+//   width: 80%;
+//   border: none;
+//   border-radius: 8px;
+//   background-color: white;
+//   padding-left: 1em;
+// `;
 
 const ItemsDiv = styled.div`
   padding: 0.5em;
@@ -173,35 +173,6 @@ class Home extends Component {
   componentWillUnmount() {
     this.props.firebase.products().off();
   }
-  //   render() {
-  //     return (
-  //       <div className="main__div_products">
-  //         <div className="title__div_products">
-  //           <h2>Products</h2>
-  //         </div>
-  //         <div className="products__div">
-  //           {this.state.allProducts.map((product) => (
-  //             <div className="product" key={product.id}>
-  //               <div className="product_image__div">
-  //                 <img
-  //                   className="product__image_"
-  //                   src={product.image}
-  //                   alt={product.name}
-  //                 ></img>
-  //               </div>
-  //               <div className="product_content__div">
-  //                 <h3 className="product__name">{product.name}</h3>
-  //                 {/* <p className="product__description">Product Description</p> */}
-  //                 <h4 className="product__price">{product.price}</h4>
-  //                 <p className="merchant__contact">Contact: {product.contact}</p>
-  //               </div>
-  //             </div>
-  //           ))}
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-  // }
 
   render() {
     return (
@@ -211,7 +182,7 @@ class Home extends Component {
             <Title>All Products/Services</Title>
           </InnerDiv>
           <InnerDiv>
-            <SearchInput type="text" placeholder="Search"></SearchInput>
+            {/* <SearchInput type="text" placeholder="Search"></SearchInput> */}
           </InnerDiv>
         </TopDiv>
         <ItemsDiv>

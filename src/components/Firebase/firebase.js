@@ -55,6 +55,9 @@ class Firebase {
   // single land
   findLand = (landID) => this.db.ref(`items/land/${landID}`);
 
+  //search
+  searchLand = () => this.db.ref("items/land");
+
   addLandImage = () => this.store.ref("items/land/images");
 
   // all products

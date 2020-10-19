@@ -91,6 +91,19 @@ function NavigationAuth() {
               Products
             </Link>
           </Typography>
+
+          <Typography className={classes.links}>
+            <Link
+              to={ROUTES.BLOG}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "600",
+              }}
+            >
+              Agricultural Information
+            </Link>
+          </Typography>
           <Typography className={classes.links}>
             <Link
               to={ROUTES.DASHBOARD}
@@ -180,6 +193,18 @@ function NavigationNonAuth() {
               }}
             >
               Sign In
+            </Link>
+          </Typography>
+          <Typography className={classes.links}>
+            <Link
+              to={ROUTES.SIGN_UP}
+              style={{
+                textDecoration: "none",
+                color: "#3D9A04",
+                fontWeight: "600",
+              }}
+            >
+              Sign Up
             </Link>
           </Typography>
           <Button color="inherit">

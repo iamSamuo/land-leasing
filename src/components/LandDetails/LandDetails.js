@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { withFirebase } from "../Firebase";
 import "./LandDetails.css";
-import Map from "../Map";
+// import Map from "../Map";
 import styled from "styled-components";
+import ReactModal from "react-modal";
+import { Link } from "react-router-dom";
 
 const MainDiv = styled.div`
   padding: 1.5em;
@@ -107,6 +109,7 @@ const CertImage = styled.div`
 `;
 
 const MapDiv = styled.div`
+display: none;
   height: auto;
   width: 80%;
   display: flex;
@@ -121,7 +124,7 @@ const ButtonDiv = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1.5em;
+  margin-top: 2.5em;
 `;
 
 const Button = styled.button`
@@ -131,12 +134,14 @@ const Button = styled.button`
   color: white;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
 `;
 
 class LandDetails extends Component {
   state = {
     landDetails: {},
     id: "",
+    showModal: false,
   };
 
   componentDidMount(id) {
@@ -156,61 +161,13 @@ class LandDetails extends Component {
       });
   }
 
-  //   render() {
-  //     return (
-  //       <div className="div__main">
-  //         <div className="top__div">
-  //           <div className="image-price__div">
-  //             <div className="details__image__div">
-  //               <img
-  //                 className="details__image__"
-  //                 alt={this.state.landDetails.name}
-  //                 src={this.state.landDetails.image}
-  //               ></img>
-  //             </div>
-  //             <div className="details__price__div">
-  //               <p className="details__name">{this.state.landDetails.name}</p>
-  //               <p className="details__price">{this.state.landDetails.price}</p>
-  //             </div>
-  //           </div>
-  //           <div className="land-description__div">
-  //             <p className="land__description">
-  //               {this.state.landDetails.description}
-  //             </p>
-  //           </div>
-  //         </div>
-  //         <div className="land-documents__div">
-  //           <div className="title-deed-image__div">
-  //             <img
-  //               className="details__image__"
-  //               alt={this.state.landDetails.name}
-  //               src={this.state.landDetails.deedImage}
-  //             ></img>
-  //           </div>
-  //           <div className="title-deed-image__div">
-  //             <img
-  //               className="details__image__"
-  //               alt={this.state.landDetails.name}
-  //               src={this.state.landDetails.deedImage}
-  //             ></img>
-  //           </div>
-  //         </div>
-  //         <div className="land-map__div">
-  //           <div className="map">
-  //             <Map style={{ height: "100%", width: "100%" }} />
-  //           </div>
-  //         </div>
-  //         <div className="options__div">
-  //           <div className="chat__div">
-  //             <button className="chat__button">Chat with seller</button>
-  //             <button className="lease-agreement__button">Lease Agreement</button>
-  //             <button className="payment__button">Proceed to Payment</button>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-  // }
+  handleOpenModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ showModal: false });
+  };
 
   render() {
     return (
@@ -224,7 +181,9 @@ class LandDetails extends Component {
                 alt={this.state.landDetails.name}
               ></Image>
             </ImageDiv>
-            <LandName>Kikuyu 50*100</LandName>
+            <LandName>
+              {this.state.landDetails.name} {this.state.landDetails.size}
+            </LandName>
           </ImageContainer>
           <LandDetail>
             <Detail>
@@ -259,17 +218,89 @@ class LandDetails extends Component {
         <MapDiv>
           <Title>Location</Title>
           <div className="land-map__div">
-            <div className="map">
-              <Map
-                style={{ height: "100%", width: "100%", objectFit: "contain" }}
-              />
-            </div>
+            <div className="map">{/* <Map /> */}</div>
+            <p>Map</p>
           </div>
         </MapDiv>
         <ButtonDiv>
-          <Button>Chat with seller</Button>
-          <Button>Lease Agreement</Button>
-          <Button>Proceed To Payment</Button>
+          <Button onClick={this.handleOpenModal}>Lease Agreement</Button>
+          <Button>Chat with Seller</Button>
+          <Link to="/payments">
+            <Button>Proceed To Payment</Button>
+          </Link>
+          <ReactModal
+            isOpen={this.state.showModal}
+            contentLabel="Minimal Modal Example"
+          >
+            <p>
+              This agreement is between _________________ ( landowner) and
+              _________________, (tenant), for the lease of certain parcels of
+              land for the purpose of Agricultural practice (Farming )
+            </p>
+            <p>
+              1.The parcel(s) contained in this agreement are is/described as
+              follows: location, Size.
+            </p>
+            <p>
+              2. The term of this lease shall be Expire from _______________
+              except as terminated earlier according to the provisions below.{" "}
+            </p>
+
+            <p>
+              3. The tenant agrees to pay a lease fee to the landowner of
+              $__________per SIZE . The tenant agrees to pay such sum at the
+              beginning of the lease term and on the anniversary thereof unless
+              otherwise mutually agreed. This lease fee may be renegotiated
+              annually.
+            </p>
+
+            <p>
+              4. Permitted Uses: The tenant is permitted all normal activities
+              associated with the above purposes, including but not limited to:
+              The tenant agrees to employ standard best management practices. It
+              shall not be considered a default of this Lease if weather or
+              other circumstance prevents timely practices or harvesting.{" "}
+            </p>
+
+            <p>
+              5. Prohibited Uses: The tenant shall not, unless by mutual
+              agreement to the contrary, engage in any of the following
+              activities on said parcel(s):{" "}
+            </p>
+            <p>
+              6. The tenant agrees to prepare an annual management plan for
+              review by the landlord, complete annual soil testing, and apply
+              amendments as indicated at his/her own expense. The tenant agrees
+              to proper disposal of trash and waste. The tenant further agrees:{" "}
+            </p>
+            <p>
+              7. The [landowner/tenant] agrees to pay all taxes and assessments
+              associated with this parcel.{" "}
+            </p>
+            <p>
+              8. The farmer agrees to provide the landowner with evidence of
+              liability insurance coverage.{" "}
+            </p>
+            <p>
+              9. Either party may terminate this lease at any time with 3 month
+              notice to the other party. The tenant agrees not to assign or
+              sublease his/her interest.{" "}
+            </p>
+            <p>
+              10. The terms of this lease may be amended by mutual consent.{" "}
+            </p>
+            <p>
+              11. A default in any of these provisions by either party may be
+              cured upon written notice by the other party within 30 days of
+              receipt of such notice. Any disputes occurring from this lease may
+              be resolved by standard mediation practices, if necessary.{" "}
+            </p>
+            <p>
+              12. Landowner retains his/her right to access the parcel(s) for
+              the purposes of inspection with prior notification to the tenant.
+            </p>
+            <Button onClick={this.handleCloseModal}>Close Agreement</Button>
+          </ReactModal>
         </ButtonDiv>
       </MainDiv>
     );
