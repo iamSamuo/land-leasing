@@ -57,6 +57,9 @@ class Firebase {
   // all land
   land = () => this.db.ref("items/land");
 
+  // all payments
+  payments = () => this.db.ref("payments");
+
   // single land
   findLand = (landID) => this.db.ref(`items/land/${landID}`);
 

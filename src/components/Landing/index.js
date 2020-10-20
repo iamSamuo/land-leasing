@@ -208,41 +208,6 @@ class Landing extends Component {
     this.setState({ [name]: event.target.value });
   };
 
-  handleEstateSearch = async (event) => {
-    event.preventDefault();
-    const estate = this.state.selectedEstate;
-    this.setState({
-      searchMessage: false,
-      estate: estate,
-      houses: [],
-    });
-
-    this.props.firebase
-      .houseData()
-      .orderByChild("estate")
-      .equalTo(estate)
-      .on("value", (snapshot) => {
-        const estateObject = snapshot.val();
-        if (estateObject) {
-          const houseList = Object.keys(estateObject).map((key) => ({
-            ...estateObject[key],
-            id: key,
-          }));
-          this.setState({
-            houses: houseList,
-          });
-        } else {
-          // this.setState({
-          //   emptyEstate: true
-          // });
-        }
-      });
-    this.focusHouses.current.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-    });
-  };
-
   handleSearch = async (e) => {
     e.preventDefault();
     const landLocation = this.state.location;

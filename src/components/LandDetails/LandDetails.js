@@ -233,25 +233,27 @@ class LandDetails extends Component {
             contentLabel="Minimal Modal Example"
           >
             <p>
-              This agreement is between _________________ ( landowner) and
-              _________________, (tenant), for the lease of certain parcels of
-              land for the purpose of Agricultural practice (Farming )
+              This agreement is between ${this.state.landDetails.lessorName} (
+              landowner) and _________________, (tenant), for the lease of
+              certain parcels of land for the purpose of Agricultural practice
+              (Farming )
             </p>
             <p>
               1.The parcel(s) contained in this agreement are is/described as
               follows: location, Size.
             </p>
             <p>
-              2. The term of this lease shall be Expire from _______________
+              2. The term of this lease shall be Expire from $
+              {this.state.landDetails.expiryDate}
               except as terminated earlier according to the provisions below.{" "}
             </p>
 
             <p>
-              3. The tenant agrees to pay a lease fee to the landowner of
-              $__________per SIZE . The tenant agrees to pay such sum at the
-              beginning of the lease term and on the anniversary thereof unless
-              otherwise mutually agreed. This lease fee may be renegotiated
-              annually.
+              3. The tenant agrees to pay a lease fee to the landowner of Ksh. $
+              {this.state.landDetails.price} per ${this.state.landDetails.size}.
+              The tenant agrees to pay such sum at the beginning of the lease
+              term and on the anniversary thereof unless otherwise mutually
+              agreed. This lease fee may be renegotiated annually.
             </p>
 
             <p>

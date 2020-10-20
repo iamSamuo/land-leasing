@@ -1,5 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
+import { withFirebase } from "../Firebase";
+import firebase from "firebase";
+import renderIf from "render-if";
 
 const MainDiv = styled.div`
   height: auto;
@@ -41,13 +44,6 @@ const Option = styled.h3`
   font-size: 1.1em;
 `;
 
-const Value = styled.h3`
-  font-family: Helvetica;
-  font-style; normal;
-  font-weight: 600;
-  font-size: 1.2em;
-`;
-
 const MakePaymentButton = styled.button`
   height: 2.4em;
   width: 12em;
@@ -67,6 +63,15 @@ const MpesaDiv = styled.div`
   justify-content: center;
 `;
 
+const Inputs = styled.input`
+  height: 2.3em;
+  width: 70%;
+  border: none;
+  border-radius: 8px;
+  background-color: #e5e5e5;
+  padding-left: 0.5em;
+`;
+
 const Input = styled.input`
   margin-top: 0.5em;
   height: 2.3em;
@@ -76,29 +81,98 @@ const Input = styled.input`
   border-radius: 8px;
 `;
 
-function Payments() {
-  return (
-    <MainDiv>
-      <Title>Payments</Title>
-      <PaymentDetailsDiv>
-        <Detail>
-          <Option>Lessor Name : </Option>
-          <Value>Kinyanjui</Value>
-        </Detail>
-        <Detail>
-          <Option>Amount : </Option>
-          <Value>Ksh. 12000</Value>
-        </Detail>
-      </PaymentDetailsDiv>
-      <MakePaymentButton>Make Payment</MakePaymentButton>
+const Alert = styled.p`
+  margin-top: 0.2em;
+  color: #3d94a0;
+`;
 
-      <MpesaDiv>
-        <Title>Enter Mpesa Code</Title>
-        <Input></Input>
-        <MakePaymentButton>Send</MakePaymentButton>
-      </MpesaDiv>
-    </MainDiv>
-  );
+class Payments extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lessorName: "",
+      amount: "",
+      mpesaCode: "",
+      finished: false,
+    };
+  }
+
+  handleChange = (event) => {
+    let name = event.target.name;
+    this.setState({ [name]: event.target.value });
+  };
+
+  handlePaymentUpload = (event) => {
+    event.preventDefault();
+
+    var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    var time =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateUploaded = date + " " + time;
+    const { lessorName, amount, mpesaCode } = this.state;
+
+    firebase
+      .database()
+      .ref(`payments/${Math.floor(Math.random() * (10000000 - 1 + 1)) + 1}/`)
+      .set({
+        userID: this.props.firebase.auth.currentUser.uid,
+        lessorName: lessorName,
+        amount: amount,
+        mpesaCode: mpesaCode,
+        datePaid: dateUploaded,
+      });
+    this.setState({ finished: true });
+  };
+  render() {
+    return (
+      <MainDiv>
+        <Title>Payments</Title>
+        <PaymentDetailsDiv>
+          <Detail>
+            <Option>Lessor Name : </Option>
+            <Inputs
+              type="text"
+              value={this.state.lessorName}
+              name="lessorName"
+              onChange={this.handleChange}
+            ></Inputs>
+          </Detail>
+          <Detail>
+            <Option>Amount : </Option>
+            <Inputs
+              type="text"
+              value={this.state.amount}
+              name="amount"
+              onChange={this.handleChange}
+            ></Inputs>
+          </Detail>
+        </PaymentDetailsDiv>
+        {/* <MakePaymentButton>Make Payment</MakePaymentButton> */}
+
+        <MpesaDiv>
+          <Title>Enter Mpesa Code</Title>
+          <Input
+            type="text"
+            value={this.state.mpesaCode}
+            name="mpesaCode"
+            onChange={this.handleChange}
+          ></Input>
+          <MakePaymentButton type="submit" onClick={this.handlePaymentUpload}>
+            Make Payment
+          </MakePaymentButton>
+          {renderIf(this.state.finished === true)(
+            <Alert>Payment submitted successfully!</Alert>
+          )}
+        </MpesaDiv>
+      </MainDiv>
+    );
+  }
 }
 
-export default Payments;
+export default withFirebase(Payments);

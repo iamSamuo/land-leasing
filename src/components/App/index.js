@@ -15,6 +15,7 @@ import Blog from "../Blog/Blog";
 import Payments from "../Payments/Payments";
 import ViewLand from "../ViewLand/ViewLand";
 import EditLand from "../EditLand/EditLand";
+import Admin from "../Admin/Admin";
 
 const App = () => (
   <Router>
@@ -31,6 +32,7 @@ const App = () => (
     <Route path={ROUTES.PAYMENTS} component={Payments} />
     <Route path={ROUTES.VIEWLAND} component={ViewLand} />
     <Route path={ROUTES.EDITLAND} component={EditLand} />
+    <Route path={ROUTES.ADMIN} component={Admin} />
     <Footer />
   </Router>
 );

@@ -141,6 +141,11 @@ const UploadButton = styled.button`
   cursor: pointer;
 `;
 
+const Alert = styled.p`
+  margin-top: 0.2em;
+  color: #3d94a0;
+`;
+
 class Dashboard extends Component {
   state = {
     pageLoading: false,
@@ -165,6 +170,11 @@ class Dashboard extends Component {
     userRole: "",
     isUploading: false,
     deedProgress: 0,
+    lessorName: "",
+    expiryDate: "",
+    lessorContact: "",
+    landFinished: false,
+    productFinished: false,
   };
 
   componentDidMount() {
@@ -249,6 +259,9 @@ class Dashboard extends Component {
       suitableCrop,
       landImageUrl,
       deedImageUrl,
+      lessorName,
+      lessorContact,
+      expiryDate,
     } = this.state;
 
     firebase
@@ -264,7 +277,11 @@ class Dashboard extends Component {
         image: landImageUrl,
         deedImage: deedImageUrl,
         userID: this.props.firebase.auth.currentUser.uid,
+        lessorName: lessorName,
+        lessorContact: lessorContact,
+        expiryDate: expiryDate,
       });
+    this.setState({ landFinished: true });
   };
 
   // methods to handle the product upload
@@ -319,6 +336,7 @@ class Dashboard extends Component {
         merchantName: merchantName,
         contact: merchantContact,
       });
+    this.setState({ productFinished: true });
   };
 
   render() {
@@ -438,28 +456,39 @@ class Dashboard extends Component {
               <Title>Lease Agreement</Title>
               <LeaseInputDiv>
                 <Label>Lessor Name</Label>
-                <Input type="text"></Input>
+                <Input
+                  type="text"
+                  value={this.state.lessorName}
+                  name="lessorName"
+                  onChange={this.handleChange}
+                ></Input>
               </LeaseInputDiv>
-              <LeaseInputDiv>
-                <Label>Size</Label>
-                <Input type="text"></Input>
-              </LeaseInputDiv>
-              <LeaseInputDiv>
-                <Label>Price</Label>
-                <Input type="text"></Input>
-              </LeaseInputDiv>
+
               <LeaseInputDiv>
                 <Label>Expiry Date</Label>
-                <Input type="text"></Input>
+                <Input
+                  type="text"
+                  value={this.state.expiryDate}
+                  name="expiryDate"
+                  onChange={this.handleChange}
+                ></Input>
               </LeaseInputDiv>
               <LeaseInputDiv>
                 <Label>Contact</Label>
-                <Input type="text"></Input>
+                <Input
+                  type="text"
+                  value={this.state.lessorContact}
+                  name="lessorContact"
+                  onChange={this.handleChange}
+                ></Input>
               </LeaseInputDiv>
             </LeaseDiv>
             <UploadButton type="submit" onClick={this.handleLandUpload}>
               Upload
             </UploadButton>
+            {renderIf(this.state.landFinished === true)(
+              <Alert>Land Uploaded successfully!</Alert>
+            )}
           </MainDiv>
         )}
         {renderIf(this.state.userRole === "vendor")(
@@ -549,6 +578,9 @@ class Dashboard extends Component {
                 <UploadButton type="submit" onClick={this.handleProductUpload}>
                   Upload
                 </UploadButton>
+                {renderIf(this.state.landFinished === true)(
+                  <Alert>Product Uploaded successfully!</Alert>
+                )}
               </FormDiv>
             </TopDiv>
           </MainDiv>

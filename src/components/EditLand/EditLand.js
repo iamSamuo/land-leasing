@@ -85,6 +85,9 @@ class EditLand extends Component {
       image: "",
       userID: "",
       suitableCrop: "",
+      lessorName: "",
+      lessorContact: "",
+      expiryDate: "",
     };
   }
 
@@ -106,6 +109,9 @@ class EditLand extends Component {
             image: land.image,
             suitableCrop: land.suitableCrop,
             userID: this.props.firebase.auth.currentUser.uid,
+            lessorName: land.lessorName,
+            lessorContact: land.lessorContact,
+            expiryDate: land.expiryDate,
           });
         } else {
           console.log("No such Document!");
@@ -142,6 +148,9 @@ class EditLand extends Component {
       image,
       userID,
       suitableCrop,
+      lessorContact,
+      lessorName,
+      expiryDate,
     } = this.state;
 
     this.props.firebase
@@ -155,6 +164,9 @@ class EditLand extends Component {
         image,
         userID,
         suitableCrop,
+        lessorContact,
+        lessorName,
+        expiryDate,
       })
       .then((docRef) => {
         this.setState({
