@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import "./Footer.css";
+import LogoImage from "../../resources/images/logo.png";
 
 function Copyright() {
   return (
@@ -18,7 +19,7 @@ function Footer() {
     <div className="main-div">
       <div className="content-div">
         <div className="logo-div">
-          <h1>Agricultural Land Lease</h1>
+          <img src={LogoImage} alt="logo"></img>
         </div>
         <div className="contact-div">
           <h2>Contact Info</h2>

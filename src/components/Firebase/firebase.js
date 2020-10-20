@@ -3,19 +3,24 @@ import "firebase/auth";
 import "firebase/database";
 
 const config = {
-  // apiKey: process.env.REACT_APP_API_KEY,
   apiKey: "AIzaSyDDSIhiCDKQe08nYp6LprqIhIe0HeWfBaA",
-  // authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   authDomain: "land-website-fc967.firebaseapp.com",
-  // databaseURL: process.env.REACT_APP_DATABASE_URL,
   databaseURL: "https://land-website-fc967.firebaseio.com",
-  // projectId: process.env.REACT_APP_PROJECT_ID,
   projectId: "land-website-fc967",
-  // storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   storageBucket: "land-website-fc967.appspot.com",
-  // messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   messagingSenderId: "783040368429",
 };
+
+// const config = {
+//   apiKey: "AIzaSyChzOK52YYgIIQ3dX1YnJzT8RGzdMhp1vs",
+//   authDomain: "agricultural-land-leasing.firebaseapp.com",
+//   databaseURL: "https://agricultural-land-leasing.firebaseio.com",
+//   projectId: "agricultural-land-leasing",
+//   storageBucket: "agricultural-land-leasing.appspot.com",
+//   messagingSenderId: "203735485726",
+//   appId: "1:203735485726:web:8dd1ad47a97f9db86b8d0f",
+//   measurementId: "G-QHQJXJC2BD",
+// };
 class Firebase {
   constructor() {
     app.initializeApp(config);

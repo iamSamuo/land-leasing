@@ -93,7 +93,7 @@ const ItemsName = styled.h3`
 `;
 
 const ItemsDiv = styled.div`
-  width: 100%;
+  width: 80%;
   padding: 1em;
   display: flex;
   flex-flow: wrap;
@@ -108,6 +108,7 @@ const Item = styled.div`
   border: 1px solid #e5e5e5;
   box-sizing: border-box;
   border-radius: 8px;
+  margin: 1em;
 `;
 
 const ItemImageDiv = styled.div`

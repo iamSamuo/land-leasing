@@ -13,6 +13,8 @@ import LandDetails from "../LandDetails/LandDetails";
 import Dashboard from "../Dashboard/Dashboard";
 import Blog from "../Blog/Blog";
 import Payments from "../Payments/Payments";
+import ViewLand from "../ViewLand/ViewLand";
+import EditLand from "../EditLand/EditLand";
 
 const App = () => (
   <Router>
@@ -27,6 +29,8 @@ const App = () => (
     <Route path={ROUTES.DASHBOARD} component={Dashboard} />
     <Route path={ROUTES.BLOG} component={Blog} />
     <Route path={ROUTES.PAYMENTS} component={Payments} />
+    <Route path={ROUTES.VIEWLAND} component={ViewLand} />
+    <Route path={ROUTES.EDITLAND} component={EditLand} />
     <Footer />
   </Router>
 );

@@ -7,6 +7,8 @@ import FileUploader from "react-firebase-file-uploader";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import renderIf from "render-if";
 import SignOut from "../../components/SignOut";
+import { Link } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
 const MainDiv = styled.div`
   padding: 1em;
@@ -64,7 +66,7 @@ const ActionDiv = styled.div`
   padding-left: 2.5em;
 `;
 
-const Link = styled.a`
+const Links = styled.p`
   text-decoration: none;
   color: black;
   font-family: Helvetica;
@@ -261,6 +263,7 @@ class Dashboard extends Component {
         suitableCrop: suitableCrop,
         image: landImageUrl,
         deedImage: deedImageUrl,
+        userID: this.props.firebase.auth.currentUser.uid,
       });
   };
 
@@ -331,9 +334,11 @@ class Dashboard extends Component {
                   {this.state.userDetails.lastName}
                 </Name>
                 <ActionDiv>
-                  <Link>Add Land</Link>
-                  <Link>View Land</Link>
-                  <Link>Chats</Link>
+                  <Links>Add Land</Links>
+                  <Link to={ROUTES.VIEWLAND}>
+                    <Links>View Land</Links>
+                  </Link>
+                  <Links>Chats</Links>
                 </ActionDiv>
                 <SignOut />
               </ProfileDiv>
@@ -467,8 +472,8 @@ class Dashboard extends Component {
                   {this.state.userDetails.lastName}
                 </Name>
                 <ActionDiv>
-                  <Link>Add Product/Service</Link>
-                  <Link>Edit Product/Service</Link>
+                  <Links>Add Product/Service</Links>
+                  <Links>Edit Product/Service</Links>
                 </ActionDiv>
                 <SignOut />
               </ProfileDiv>

@@ -1,7 +1,7 @@
 .main-div {
   height: auto;
   bottom: 0;
-  background-color: whitesmoke;
+  background-color: #dbffea;
   margin-top: 2em;
   width: 100%;
 }
@@ -9,8 +9,20 @@
 .content-div {
   display: flex;
   flex-flow: row nowrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-around;
+}
+
+.logo-div {
+  height: 8em;
+  width: 13em;
+}
+
+.logo-div img {
+  margin-top: 1.5em;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .copyright-div {

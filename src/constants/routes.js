@@ -11,3 +11,5 @@ export const LANDDETAILS = "/land-details/:id";
 export const DASHBOARD = `/dashboard/${userId}`;
 export const BLOG = "/agricultural-blog";
 export const PAYMENTS = "/payments";
+export const VIEWLAND = `/${userId}/view-land`;
+export const EDITLAND = `/${userId}/edit-land/:id`;
