@@ -63,6 +63,7 @@ const Item = styled.div`
   justify-content: center;
   border-radius: 8px;
   background-color: white;
+  margin-top: 1.3em;
 `;
 
 const ItemImageDiv = styled.div`

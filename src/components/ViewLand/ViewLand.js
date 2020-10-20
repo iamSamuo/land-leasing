@@ -127,7 +127,7 @@ class ListedHouses extends Component {
 
   render() {
     return (
-      <div className="listed-houses-page">
+      <div className="listed-land-page">
         <ItemsContainer>
           <ItemsName>Land Available</ItemsName>
           {renderIf(this.state.landLoading === true)(<div>Loading...</div>)}

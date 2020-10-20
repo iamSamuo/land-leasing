@@ -161,6 +161,7 @@ class Landing extends Component {
       crop: "",
       location: "",
       price: "",
+      error: "",
     };
   }
 
@@ -207,27 +208,63 @@ class Landing extends Component {
     this.setState({ [name]: event.target.value });
   };
 
-  handleSearch = (e) => {
-    e.preventDefault();
-    var landLocation = this.state.location;
-    this.setState({ landLoading: true });
+  handleEstateSearch = async (event) => {
+    event.preventDefault();
+    const estate = this.state.selectedEstate;
+    this.setState({
+      searchMessage: false,
+      estate: estate,
+      houses: [],
+    });
+
     this.props.firebase
-      .searchLand()
-      .orderByChild("location")
-      .equalTo(landLocation)
-      .on("value", function (snapshot) {
-        if (snapshot.val() === null) {
-          console.log("not present");
-        } else {
-          const landObject = snapshot.val();
-          const landList = Object.keys(landObject).map((key) => ({
-            ...landObject[key],
+      .houseData()
+      .orderByChild("estate")
+      .equalTo(estate)
+      .on("value", (snapshot) => {
+        const estateObject = snapshot.val();
+        if (estateObject) {
+          const houseList = Object.keys(estateObject).map((key) => ({
+            ...estateObject[key],
             id: key,
           }));
           this.setState({
-            allLand: landList,
+            houses: houseList,
+          });
+        } else {
+          // this.setState({
+          //   emptyEstate: true
+          // });
+        }
+      });
+    this.focusHouses.current.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
+  };
+
+  handleSearch = async (e) => {
+    e.preventDefault();
+    const landLocation = this.state.location;
+    this.setState({ landLoading: true, allLand: [] });
+    this.props.firebase
+      .land()
+      .orderByChild("location")
+      .equalTo(landLocation)
+      .on("value", (snapshot) => {
+        const searchLandObject = snapshot.val();
+
+        if (searchLandObject) {
+          const searchLandList = Object.keys(searchLandObject).map((key) => ({
+            ...searchLandObject[key],
+            id: key,
+          }));
+          this.setState({
+            allLand: searchLandList,
             landLoading: false,
           });
+        } else {
+          this.setState({ error: "Empty" });
         }
       });
   };
