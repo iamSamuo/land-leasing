@@ -67,7 +67,7 @@ function NavigationAuth() {
               </div>
             </Link>
           </Typography>
-          <Typography className={classes.links}>
+          <Typography variant="h6" className={classes.links}>
             <Link
               to={ROUTES.LANDING}
               style={{
@@ -79,7 +79,7 @@ function NavigationAuth() {
               Lease Land
             </Link>
           </Typography>
-          <Typography className={classes.links}>
+          <Typography variant="h6" className={classes.links}>
             <Link
               to={ROUTES.HOME}
               style={{
@@ -92,7 +92,7 @@ function NavigationAuth() {
             </Link>
           </Typography>
 
-          <Typography className={classes.links}>
+          <Typography variant="h6" className={classes.links}>
             <Link
               to={ROUTES.BLOG}
               style={{
@@ -104,7 +104,7 @@ function NavigationAuth() {
               Agricultural Information
             </Link>
           </Typography>
-          <Typography className={classes.links}>
+          <Typography variant="h6" className={classes.links}>
             <Link
               to={ROUTES.DASHBOARD}
               style={{
@@ -147,7 +147,7 @@ function NavigationNonAuth() {
               </div>
             </Link>
           </Typography>
-          <Typography className={classes.links}>
+          <Typography variant="h6" className={classes.links}>
             <Link
               to={ROUTES.LANDING}
               style={{
@@ -159,7 +159,7 @@ function NavigationNonAuth() {
               Home
             </Link>
           </Typography>
-          <Typography className={classes.links}>
+          <Typography variant="h6" className={classes.links}>
             <Link
               to={ROUTES.LANDING}
               style={{
@@ -171,7 +171,7 @@ function NavigationNonAuth() {
               Lease Land
             </Link>
           </Typography>
-          <Typography className={classes.links}>
+          <Typography variant="h6" className={classes.links}>
             <Link
               to={ROUTES.HOME}
               style={{
@@ -183,7 +183,7 @@ function NavigationNonAuth() {
               Products
             </Link>
           </Typography>
-          <Typography className={classes.links}>
+          <Typography variant="h6" className={classes.links}>
             <Link
               to={ROUTES.SIGN_IN}
               style={{
@@ -195,7 +195,7 @@ function NavigationNonAuth() {
               Sign In
             </Link>
           </Typography>
-          <Typography className={classes.links}>
+          <Typography variant="h6" className={classes.links}>
             <Link
               to={ROUTES.SIGN_UP}
               style={{

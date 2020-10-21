@@ -108,18 +108,8 @@ const CertImage = styled.div`
   border-radius: 8px;
 `;
 
-const MapDiv = styled.div`
-display: none;
-  height: auto;
-  width: 80%;
-  display: flex;
-  flex-flow: column;
-  align-items center;
-  justify-content: center;
-`;
-
 const ButtonDiv = styled.div`
-  width: 80%;
+  width: 50%;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -128,8 +118,8 @@ const ButtonDiv = styled.div`
 `;
 
 const Button = styled.button`
-  height: 2.5em;
-  width: 10em;
+  height: 3em;
+  width: 12em;
   background-color: #3d9a04;
   color: white;
   border: none;
@@ -215,13 +205,7 @@ class LandDetails extends Component {
             </CertImage>
           </CertificateImages>
         </CertificateDiv>
-        <MapDiv>
-          <Title>Location</Title>
-          <div className="land-map__div">
-            <div className="map">{/* <Map /> */}</div>
-            <p>Map</p>
-          </div>
-        </MapDiv>
+
         <ButtonDiv>
           <Button onClick={this.handleOpenModal}>Lease Agreement</Button>
           <Button>Chat with Seller</Button>
@@ -301,7 +285,9 @@ class LandDetails extends Component {
               12. Landowner retains his/her right to access the parcel(s) for
               the purposes of inspection with prior notification to the tenant.
             </p>
-            <Button onClick={this.handleCloseModal}>Close Agreement</Button>
+            <Button onClick={this.handleCloseModal}>
+              I agree to the terms of the agreement
+            </Button>
           </ReactModal>
         </ButtonDiv>
       </MainDiv>

@@ -39,7 +39,7 @@ const SearchTitle = styled.h3`
   font-family: Helvetica;
   font-weight: 700;
   font-style: normal;
-  font-size: 2em;
+  font-size: 2.3em;
   line-height: 41.4px;
   color: white;
 `;
@@ -93,7 +93,7 @@ const ItemsName = styled.h3`
 `;
 
 const ItemsDiv = styled.div`
-  width: 80%;
+  width: 100%;
   padding: 1em;
   display: flex;
   flex-flow: wrap;
@@ -229,7 +229,7 @@ class Landing extends Component {
             landLoading: false,
           });
         } else {
-          this.setState({ error: "Empty" });
+          this.setState({ error: "Empty", landLoading: false });
         }
       });
   };
@@ -269,6 +269,9 @@ class Landing extends Component {
         <ItemsContainer>
           <ItemsName>Land Available</ItemsName>
           {renderIf(this.state.landLoading === true)(<div>Loading...</div>)}
+          {renderIf(this.state.error === "Empty")(
+            <div>No land available in {this.state.location}</div>
+          )}
           {renderIf(this.state.landLoading === false)(
             <ItemsDiv>
               {this.state.allLand.map((land) => (

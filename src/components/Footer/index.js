@@ -2,6 +2,8 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import "./Footer.css";
 import LogoImage from "../../resources/images/logo.png";
+import { Link } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
 function Copyright() {
   return (
@@ -20,6 +22,41 @@ function Footer() {
       <div className="content-div">
         <div className="logo-div">
           <img src={LogoImage} alt="logo"></img>
+        </div>
+        <div className="contact-div">
+          <h2>Links</h2>
+          <p>
+            <Link
+              to={ROUTES.LANDING}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Home
+            </Link>
+          </p>
+          <p>
+            <Link
+              to={ROUTES.LANDING}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Land
+            </Link>
+          </p>
+          <p>
+            <Link
+              to={ROUTES.HOME}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Products
+            </Link>
+          </p>
+          <p>
+            <Link
+              to={ROUTES.BLOG}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Agricultural Information
+            </Link>
+          </p>
         </div>
         <div className="contact-div">
           <h2>Contact Info</h2>

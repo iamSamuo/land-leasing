@@ -13,4 +13,4 @@ export const BLOG = "/agricultural-blog";
 export const PAYMENTS = "/payments";
 export const VIEWLAND = `/${userId}/view-land`;
 export const EDITLAND = `/${userId}/edit-land/:id`;
-export const ADMIN = "/admin/1234";
+export const ADMIN = "/admin";

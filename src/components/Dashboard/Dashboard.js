@@ -441,7 +441,7 @@ class Dashboard extends Component {
                     onProgress={this.handleLandProgress}
                   />
                 </InputDiv>
-                {this.state.isUploadingLand && (
+                {/* {this.state.isUploadingLand && (
                   <p className="progress">
                     Progress:{" "}
                     <LinearProgress
@@ -449,7 +449,7 @@ class Dashboard extends Component {
                       valueBuffer={this.state.landProgress}
                     />
                   </p>
-                )}
+                )} */}
               </FormDiv>
             </TopDiv>
             <LeaseDiv>
