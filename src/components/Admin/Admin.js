@@ -83,5 +83,5 @@ class Admin extends Component {
 }
 
 const condition = (authUser) =>
-  authUser && authUser.email === "danielmuhu16@gmail.com";
+  authUser && authUser.email === "kibuika@gmail.com";
 export default withAuthorization(condition)(withFirebase(Admin));
